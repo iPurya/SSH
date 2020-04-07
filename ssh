@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+
+RED='\033[0;31m'
+
+echo -e "${RED}Updating Your SSH.. @Purya${NC}"
+
+sudo passwd root
+sudo apt-get -y update && sudo apt-get -y upgrade
+sudo apt-get -y install tmux git curl build-essential zip unzip
+sudo sed -i 's/PermitRootLogin prohibit-password/PermitRootLogin yes/g' /etc/ssh/sshd_config
+sudo sed -i 's/PasswordAuthentication no/PasswordAuthentication yes/g' /etc/ssh/sshd_config
+
+
+echo -e "${RED}Restarting SSH Sevice.. @Purya${NC}"
+
+sudo service ssh restart
+
+echo -e "${RED}Done.. @Purya${NC}"
